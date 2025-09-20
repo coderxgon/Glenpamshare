@@ -67,7 +67,11 @@ class Share:
     headers['cookie'] = config['cookies']
     async with session.get('https://business.facebook.com/content_management', headers=headers) as response:
       data = await response.text()
-      access_token = 'EAAG' + re.search('EAAG(.*?)","', data).group(1)
+      match = re.search('EAAG(.*?)","', data)
+      if match:
+        access_token = 'EAAG' + match.group(1)
+      else:
+        raise ValueError('Could not extract access token from response')
       return access_token, headers['cookie']
 
   async def share(self, session, token, cookie):
@@ -144,5 +148,5 @@ async def main(num_tasks):
     for i in range(num_tasks):
       task = asyncio.create_task(share.share(session, token, cookie))
       tasks.append(task)
-    await asyncio.gather(*task)
+    await asyncio.gather(*tasks)
 asyncio.run(main(1))
